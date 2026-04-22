@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Fauzan & Indah</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --blue-navy: #3c5a78;
+            --gold: #c5a059;
+            --white: #ffffff;
+            --soft-bg: #f4f7f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: var(--soft-bg); color: #444; overflow: hidden; scroll-behavior: smooth; }
+
+        /* --- HALAMAN DEPAN (COVER) --- */
+        #cover {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+            transition: 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+            
+            /* --- INI ADALAH BAGIAN UNTUK GANTI GAMBAR COVER --- */
+            /* Ganti link di dalam tanda kutip url(...) di bawah ini dengan link foto kamu */
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+                        url('https://images.unsplash.com/photo-1594732832278-abd644401416?q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Gunungan di Cover */
+        .gunungan-cover {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 320px; opacity: 0.15; z-index: 0; animation: pulse 4s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+        .cover-content { position: relative; z-index: 1; }
+        .cover-content h1 { font-family: 'Playfair Display', serif; color: var(--blue-navy); font-size: 2.8rem; }
+
+        /* --- TOMBOL BUKA --- */
+        .btn-main { 
+            background: var(--blue-navy); color: white; border: none; padding: 14px 35px; 
+            border-radius: 50px; cursor: pointer; font-weight: 600; margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- ISI UNDANGAN (MAIN CONTENT) --- */
+        #main-content { display: none; opacity: 0; transition: 1s ease; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
+            url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000');
+            background-size: cover; background-position: center;
+        }
+        .hero h1 { font-family: 'Sacramento', cursive; font-size: 4.5rem; color: var(--blue-navy); }
+
+        /* Mempelai */
+        .couple { padding: 80px 20px; text-align: center; background: white; }
+        .frame-arch img { 
+            width: 220px; height: 300px; object-fit: cover; 
+            border-radius: 110px 110px 0 0; border: 8px solid #fff; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+        }
+        .divider-ampersand { font-family: 'Sacramento', cursive; font-size: 4rem; color: var(--gold); margin: 20px 0; }
+        h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--blue-navy); margin-top: 15px; }
+
+        /* Gallery */
+        .gallery { padding: 60px 20px; text-align: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 500px; margin: 0 auto; }
+        .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; }
+        .img-wide { grid-column: span 2; height: 250px !important; }
+
+        /* Closing */
+        .closing { padding: 80px 20px; text-align: center; background: #eaf1f4; }
+        .closing h2 { font-family: 'Sacramento', cursive; font-size: 3.5rem; color: var(--blue-navy); }
+
+        footer { padding: 40px; background: #333; color: white; text-align: center; font-size: 0.8rem; }
+
+        /* Musik */
+        #music-control { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: none; }
+        .btn-music { background: var(--blue-navy); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+
+    <div id="music-control">
+        <button onclick="toggleMusic()" class="btn-music"><i id="music-icon" class="fas fa-pause"></i></button>
+    </div>
+
+    <div id="cover">
+        <img src="https://www.transparentpng.com/download/shadow-puppets/gunungan-wayang-gold-vector-png-2XvS9G.png" class="gunungan-cover" alt="Gunungan">
+        
+        <div class="cover-content">
+            <p style="letter-spacing:3px; color:#888;">THE WEDDING OF</p>
+            <h1>Fauzan & Indah</h1>
+            <p style="margin-top:20px;">Kepada Yth Bapak/Ibu/Saudara/i:</p>
+            <h2 id="guest-name" style="margin: 10px 0 30px; font-family: 'Playfair Display'; color: var(--blue-navy);">Tamu Undangan</h2>
+            <button onclick="bukaUndangan()" class="btn-main">BUKA UNDANGAN</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-inner">
+                <h1>Fauzan & Indah</h1>
+                <p style="font-weight:600; color:var(--blue-navy);">26 APRIL 2026</p>
+            </div>
+        </section>
+
+        <section class="couple">
+            <div class="mempelai-box">
+                <div class="frame-arch"><img src="https://images.unsplash.com/photo-1583939411023-1478317ad1f9?q=80&w=400"></div>
+                <h3>Fauzan Firmansyah</h3>
+                <p>Putra dari Bapak Fulan & Ibu Fulanah</p>
+            </div>
+            <div class="divider-ampersand">&</div>
+            <div class="mempelai-box">
+                <div class="frame-arch"><img src="https://images.unsplash.com/photo-1594553258593-3d0859550329?q=80&w=400"></div>
+                <h3>Indah Permata</h3>
+                <p>Putri dari Bapak Fulan & Ibu Fulanah</p>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Our Gallery</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" class="img-wide">
+            </div>
+        </section>
+
+        <section class="closing">
+            <p>Terima kasih atas doa restunya.</p>
+            <p>Kami yang berbahagia,</p>
+            <h2>santoso & kinan</h2>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ made in @bang_koplak.2026</p>
+        </footer>
+    </main>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+
+        function bukaUndangan() {
+            // Animasi Cover menghilang ke atas
+            document.getElementById('cover').style.transform = 'translateY(-100%)';
+            
+            // Tampilkan konten utama dengan animasi
+            const main = document.getElementById('main-content');
+            main.style.display = 'block';
+            setTimeout(() => { main.style.opacity = '1'; }, 100);
+            
+            // Izinkan scroll
+            document.body.style.overflow = 'auto';
+            
+            // Munculkan tombol musik & putar
+            document.getElementById('music-control').style.display = 'block';
+            music.play();
+        }
+
+        function toggleMusic() {
+            const icon = document.getElementById('music-icon');
+            if (music.paused) { music.play(); icon.className = 'fas fa-pause'; }
+            else { music.pause(); icon.className = 'fas fa-play'; }
+        }
+
+        // Nama Tamu dari URL (?to=Nama)
+        const nameTamu = new URLSearchParams(window.location.search).get('to');
+        if (nameTamu) document.getElementById('guest-name').innerText = nameTamu;
+    </script>
+</body>
+</html>
